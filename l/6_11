@@ -1,0 +1,28 @@
+Last Position of Target
+题目：
+
+Find the last position of a target number in a sorted array. Return -1 if target does not exist.
+Example, given [1, 2, 2, 4, 5, 5]. For target = 2, return 2.
+
+Solution:
+int findRight(int[] nums, int target) {
+    if (nums == null || nums.length == 0) return -1;
+    
+    int begin = 0;
+    int end = nums.length - 1;
+    
+    while (begin < end) {
+        // bias right, mid is a possible value
+        int mid = begin + (end-begin+1)/2;
+        if (nums[mid] <= target) {
+            begin = mid;
+        } else {
+            end = mid - 1;
+        }
+    }
+    
+    if (nums[begin] == target) return begin;
+    
+    return -1;
+}
+
